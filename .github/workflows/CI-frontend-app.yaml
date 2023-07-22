@@ -119,18 +119,23 @@ jobs:
       - name: Install dependencies
         run: yarn
 
+      - name: Build Next
+        run: yarn build
+        env:
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+          NEXT_PUBLIC_LANDING_URL: ${{ secrets.NEXT_PUBLIC_LANDING_URL }}
+
       - name: Run cypress
         uses: cypress-io/github-action@v4
         with:
-          build: yarn build
           start: yarn start
           working-directory: ./edgar-app
           wait-on: "http://localhost:3000/login"
           wait-on-timeout: 30
-          env: url=http://localhost:3000,loginTestEmail=${{ secrets.CYPRESS_LOGIN_TEST_EMAIL }},loginTestPassword=${{ secrets.CYPRESS_LOGIN_TEST_PASSWORD }}
         env:
-          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
-          NEXT_PUBLIC_LANDING_URL: ${{ secrets.NEXT_PUBLIC_LANDING_URL }}
+          CYPRESS_url: http://localhost:3000
+          CYPRESS_loginTestEmail: ${{ secrets.CYPRESS_LOGIN_TEST_EMAIL }}
+          CYPRESS_loginTestPassword: ${{ secrets.CYPRESS_LOGIN_TEST_PASSWORD }}
 
       - name: Get screenshots
         uses: actions/upload-artifact@v1
