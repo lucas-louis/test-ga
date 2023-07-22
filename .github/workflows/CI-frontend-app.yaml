@@ -35,6 +35,13 @@ jobs:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-frontend-${{ secrets.CACHE_VERSION }}-${{ hashFiles('./edgar-app/yarn.lock') }}
 
+      - name: Load next cache
+        uses: actions/cache@v3
+        id: nextjs-cache
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ secrets.CACHE_VERSION }}-${{ hashFiles('./edgar-app/.next/cache') }}
+
       - name: Install dependencies
         run: yarn
 
@@ -115,19 +122,8 @@ jobs:
       - name: Build Next
         run: yarn build
         env:
-          NEXT_PUBLIC_APP_URL: http://localhost:3001
-          NEXT_PUBLIC_AIRTABLE_KEY: ${{ secrets.NEXT_PUBLIC_AIRTABLE_KEY }}
-
-      - name: Install dependencies (edgar-app)
-        working-directory: edgar-app
-        run: yarn
-
-      - name: Build Next (edgar-app)
-        working-directory: edgar-app
-        run: yarn build
-        env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
-          NEXT_PUBLIC_LANDING_URL: http://localhost:3000
+          NEXT_PUBLIC_LANDING_URL: ${{ secrets.NEXT_PUBLIC_LANDING_URL }}
 
       - name: Run cypress
         uses: cypress-io/github-action@v4
