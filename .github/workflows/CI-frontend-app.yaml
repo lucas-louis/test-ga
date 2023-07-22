@@ -131,8 +131,8 @@ jobs:
           start: yarn start
           working-directory: ./edgar-app
           wait-on: "http://localhost:3000"
-          wait-on-timeout: 300
-          env: url=http://localhost:3000,loginTestEmail=${{ secrets.CYPRESS_LOGIN_TEST_EMAIL }},loginTestPassword=${{ secrets.CYPRESS_LOGIN_TEST_PASSWORD }}
+          wait-on-timeout: 30
+          env: url=http://localhost:3000
 
       - name: Get screenshots
         uses: actions/upload-artifact@v1
