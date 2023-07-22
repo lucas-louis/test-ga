@@ -128,11 +128,11 @@ jobs:
       - name: Run cypress
         uses: cypress-io/github-action@v4
         with:
-          start: yarn start, yarn --cwd ../edgar-app start -p 3001
+          start: yarn start
           working-directory: ./edgar-app
-          wait-on: "http://localhost:3000, http://localhost:3001"
+          wait-on: "http://localhost:3000"
           wait-on-timeout: 300
-          env: url=http://localhost:3000,appUrl=http://localhost:3001,loginTestEmail=${{ secrets.CYPRESS_LOGIN_TEST_EMAIL }},loginTestPassword=${{ secrets.CYPRESS_LOGIN_TEST_PASSWORD }}
+          env: url=http://localhost:3000,loginTestEmail=${{ secrets.CYPRESS_LOGIN_TEST_EMAIL }},loginTestPassword=${{ secrets.CYPRESS_LOGIN_TEST_PASSWORD }}
 
       - name: Get screenshots
         uses: actions/upload-artifact@v1
