@@ -125,7 +125,7 @@ jobs:
           build: yarn build
           start: yarn start
           working-directory: ./edgar-app
-          wait-on: "http://localhost:3000"
+          wait-on: "http://localhost:3000/login"
           wait-on-timeout: 30
           env: url=http://localhost:3000,loginTestEmail=${{ secrets.CYPRESS_LOGIN_TEST_EMAIL }},loginTestPassword=${{ secrets.CYPRESS_LOGIN_TEST_PASSWORD }}
         env:
