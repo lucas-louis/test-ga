@@ -140,6 +140,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: apk-doctor-${{ github.head_ref }}
+          path: medecin_mobile
 
       - name: sdfsdf
         run: ls -la && tree .
