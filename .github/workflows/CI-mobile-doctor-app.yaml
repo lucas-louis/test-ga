@@ -146,14 +146,29 @@ jobs:
 
       - name: Extract Apk Name depending on branch
         run: |
-          if [[ ${{ needs.build.outputs.branch }} == "main" ]]; then
+          if [[ "${{ github.head_ref }}" == "main" ]]; then
             echo apk_name=pro.edgar.apk >> $GITHUB_OUTPUT
-          elif [[ ${{ needs.build.outputs.branch }} == "dev" ]]; then
+          elif [[ "${{ github.head_ref }}" == "dev" ]]; then
             echo apk_name=staging.pro.edgar.apk >> $GITHUB_OUTPUT
           else
             echo apk_name=preview.pro.edgar-${{ github.head_ref }}.apk >> $GITHUB_OUTPUT
           fi
         id: extract_apk_name
+
+#      - name: Extract Production Apk Name
+#        if: ${{ needs.build.outputs.branch == 'main' }}
+#        run: echo apk_name=pro.edgar.apk >> $GITHUB_OUTPUT
+#        id: extract_apk_name
+#
+#      - name: Extract Dev Apk Name
+#        if: ${{ needs.build.outputs.branch == 'dev' }}
+#        run: echo apk_name=staging.pro.edgar.apk >> $GITHUB_OUTPUT
+#        id: extract_apk_name
+#
+#      - name: Extract Preview Apk Name
+#        if: ${{ needs.build.outputs.branch != 'main' && needs.build.outputs.branch != 'dev' }}
+#        run: echo apk_name=preview.pro.edgar-${{ github.head_ref }}.apk >> $GITHUB_OUTPUT
+#        id: extract_apk_name
 
       - name: Rename Apk Name
         run: mv ./app-release.apk ./${{ steps.extract_apk_name.outputs.apk_name }}
