@@ -33,9 +33,6 @@ jobs:
           file_name: .env
           fail_on_empty: false
 
-      - name: tdfg
-        run: pwd && ls -la
-
       - name: Setup Flutter Environment
         uses: subosito/flutter-action@v2
         with:
@@ -77,6 +74,9 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+
+      - name: tdfg
+        run: pwd && ls -la
 
       - name: Build Apk
         run: flutter build apk --release
