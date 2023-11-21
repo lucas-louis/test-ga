@@ -142,9 +142,6 @@ jobs:
           name: apk-doctor-${{ github.head_ref }}
           path: medecin_mobile
 
-      - name: sdfsdf
-        run: ls -la && tree .
-
       - name: Rename Production Apk
         if: ${{ needs.build.outputs.branch == 'main' }}
         run: mv ./app-release.apk ./pro.edgar.apk
@@ -155,7 +152,7 @@ jobs:
 
       - name: Rename Preview Apk
         if: ${{ needs.build.outputs.branch != 'main' && needs.build.outputs.branch != 'dev' }}
-        run: mv ./app-release.apk ./preview.pro.edgar-{{ github.head_ref }}.apk
+        run: mv ./app-release.apk ./preview.pro.edgar-${{ github.head_ref }}.apk
 
 #      - name: Setup AWS Credentials
 #        uses: aws-actions/configure-aws-credentials@v1
