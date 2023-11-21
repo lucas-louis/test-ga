@@ -144,23 +144,29 @@ jobs:
           name: apk-doctor-${{ github.head_ref }}
           path: medecin_mobile
 
-      - name: Rename Production Apk
+      - name: Extract Production Apk Name
         if: ${{ needs.build.outputs.branch == 'main' }}
-        run: mv ./app-release.apk ./pro.edgar.apk
+        run: echo apk_name=pro.edgar.apk >> $GITHUB_OUTPUT
+        id: extract_apk_name
 
-      - name: Rename Dev Apk
-        if: ${{ needs.build.outputs.branch  == 'dev' }}
-        run: mv ./app-release.apk ./staging.pro.edgar.apk
+      - name: Extract Dev Apk Name
+        if: ${{ needs.build.outputs.branch == 'dev' }}
+        run: echo apk_name=staging.pro.edgar.apk >> $GITHUB_OUTPUT
+        id: extract_apk_name
 
-      - name: Rename Preview Apk
+      - name: Extract Preview Apk Name
         if: ${{ needs.build.outputs.branch != 'main' && needs.build.outputs.branch != 'dev' }}
-        run: mv ./app-release.apk ./preview.pro.edgar-${{ github.head_ref }}.apk
+        run: echo apk_name=preview.pro.edgar-${{ github.head_ref }}.apk >> $GITHUB_OUTPUT
+        id: extract_apk_name
+
+      - name: Rename Apk Name
+        run: mv ./app-release.apk ./${{ steps.extract_apk_name.outputs.apk_name }}
 
       - name: Add PR Comment
         uses: mshick/add-pr-comment@v2.8.1
         with:
           message: |
-            **APK** for branch `${{ needs.build.outputs.branch }}` is ready to download:
+            **APK** is ready to download [here](https://edgar-care-apk.s3.eu-west-3.amazonaws.com/${{ steps.extract_apk_name.outputs.apk_name }})
 
 
 #      - name: Setup AWS Credentials
