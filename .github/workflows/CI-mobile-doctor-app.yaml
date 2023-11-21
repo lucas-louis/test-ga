@@ -154,16 +154,12 @@ jobs:
         if: ${{ needs.build.outputs.branch != 'main' && needs.build.outputs.branch != 'dev' }}
         run: mv ./app-release.apk ./preview.pro.edgar-${{ github.head_ref }}.apk
 
-      - name: Comment
-        uses: actions/github-script@v6
+      - name: Add PR Comment
+        uses: mshick/add-pr-comment@v2.8.1
         with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
-            })
+          message: |
+            **APK** for branch `${{ needs.build.outputs.branch }}` is ready to download:
+
 
 #      - name: Setup AWS Credentials
 #        uses: aws-actions/configure-aws-credentials@v1
