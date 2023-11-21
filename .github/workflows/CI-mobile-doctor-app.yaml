@@ -144,19 +144,15 @@ jobs:
           name: apk-doctor-${{ github.head_ref }}
           path: medecin_mobile
 
-      - name: Extract Production Apk Name
-        if: ${{ needs.build.outputs.branch == 'main' }}
-        run: echo apk_name=pro.edgar.apk >> $GITHUB_OUTPUT
-        id: extract_apk_name
-
-      - name: Extract Dev Apk Name
-        if: ${{ needs.build.outputs.branch == 'dev' }}
-        run: echo apk_name=staging.pro.edgar.apk >> $GITHUB_OUTPUT
-        id: extract_apk_name
-
-      - name: Extract Preview Apk Name
-        if: ${{ needs.build.outputs.branch != 'main' && needs.build.outputs.branch != 'dev' }}
-        run: echo apk_name=preview.pro.edgar-${{ github.head_ref }}.apk >> $GITHUB_OUTPUT
+      - name: Extract Apk Name depending on branch
+        run: |
+          if [[ "${{ needs.build.outputs.branch }}" == "main" ]]; then
+            echo apk_name=pro.edgar.apk >> $GITHUB_OUTPUT
+          elif [[ "${{ needs.build.outputs.branch }}" == "dev" ]]; then
+            echo apk_name=staging.pro.edgar.apk >> $GITHUB_OUTPUT
+          else
+            echo apk_name=preview.pro.edgar-${{ github.head_ref }}.apk >> $GITHUB_OUTPUT
+          fi
         id: extract_apk_name
 
       - name: Rename Apk Name
