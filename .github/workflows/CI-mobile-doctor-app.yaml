@@ -115,14 +115,13 @@ jobs:
 #
 #      - name: Build Apk
 #        run: flutter build apk --release
-#s
-      - name: sddgfgdg
-        run: mkdir -p build/app/outputs/apk && touch build/app/outputs/apk/app-release.apk && tree build/app/outputs/apk/
+
+s
 
       - name: Upload Apk to artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: apk-doctor-${{ github.base_ref }}
+          name: apk-doctor-${{ github.head_ref }}
           path: medecin_mobile/build/app/outputs/apk/app-release.apk
 
 #  deploy-apk:
