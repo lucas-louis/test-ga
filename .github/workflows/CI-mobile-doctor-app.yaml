@@ -81,6 +81,9 @@ jobs:
       - name: sdf
         run: pwd && ls -la
 
+      - name: sddgfgdg
+        run: tree build
+
       - name: Upload Apk to artifacts
         uses: actions/upload-artifact@v3
         with:
