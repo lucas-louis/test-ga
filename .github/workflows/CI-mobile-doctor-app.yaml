@@ -116,6 +116,8 @@ jobs:
 #      - name: Build Apk
 #        run: flutter build apk --release
 
+      - name: sddgfgdg
+        run: mkdir -p build/app/outputs/apk && touch build/app/outputs/apk/app-release.apk && tree build/app/outputs/apk/
 
       - name: Upload Apk to artifacts
         uses: actions/upload-artifact@v3
