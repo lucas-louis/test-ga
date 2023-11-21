@@ -122,7 +122,7 @@ jobs:
       - name: Upload Apk to artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: apk-doctor-${{ github.base_ref }}
+          name: apk-doctor-${{ github.head_ref }}
           path: medecin_mobile/build/app/outputs/apk/app-release.apk
 
 #  deploy-apk:
