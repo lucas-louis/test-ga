@@ -122,9 +122,8 @@ jobs:
       - name: Upload Apk to artifacts
         uses: actions/upload-artifact@v3
         with:
-          working-directory: ./medecin_mobile
           name: apk-doctor-${{ steps.extract_branch.outputs.branch }}
-          path: ./build/app/outputs/apk/release/app-release.apk
+          path: medecin_mobile/build/app/outputs/apk/app-release.apk
 
 #  deploy-apk:
 #    runs-on: ubuntu-latest
