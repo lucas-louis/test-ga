@@ -146,9 +146,9 @@ jobs:
 
       - name: Extract Apk Name depending on branch
         run: |
-          if [[ "${{ github.head_ref }}" == "main" ]]; then
+          if [[ "${{ github.base_ref }}" == "main" ]]; then
             echo apk_name=pro.edgar.apk >> $GITHUB_OUTPUT
-          elif [[ "${{ github.head_ref }}" == "dev" ]]; then
+          elif [[ "${{ github.base_ref }}" == "dev" ]]; then
             echo apk_name=staging.pro.edgar.apk >> $GITHUB_OUTPUT
           else
             echo apk_name=preview.pro.edgar-${{ github.head_ref }}.apk >> $GITHUB_OUTPUT
