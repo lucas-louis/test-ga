@@ -105,19 +105,20 @@ jobs:
 #        run: echo branch=${GITHUB_REF##*/} >> $GITHUB_OUTPUT
 #        id: extract_branch
 
-#      - name: Setup Flutter Environment
-#        uses: subosito/flutter-action@v2
-#        with:
-#          channel: 'stable'
-#
-#      - name: Get Packages
-#        run: flutter pub get
-#
-#      - name: Build Apk
-#        run: flutter build apk --release
+      - name: Setup Flutter Environment
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
 
-      - name: sddgfgdg
-        run: mkdir -p build/app/outputs/apk && touch build/app/outputs/apk/app-release.apk && tree build/app/outputs/apk/
+      - name: Get Packages
+        run: flutter pub get
+
+      - name: Build Apk
+        working-directory: medecin_mobile
+        run: flutter build apk --release
+
+      - name: tree
+        run: tree build/app/outputs/apk
 
       - name: Upload Apk to artifacts
         uses: actions/upload-artifact@v3
