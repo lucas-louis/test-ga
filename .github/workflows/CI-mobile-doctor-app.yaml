@@ -60,7 +60,7 @@ jobs:
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v2.0.2
         with:
-          envkey_URL: ${{ secrets.URL }}
+          envkey_URL: ${{ secrets.API_URL }}
           envkey_APP_NAME: edgar
           directory: medecin_mobile
           file_name: .env
@@ -68,9 +68,6 @@ jobs:
 
       - name: dfdfgf
         run: cat .env
-
-      - name: sdgdfdg
-        run: cat medecin_mobile/.env
 
       - name: Setup Flutter Environment
         uses: subosito/flutter-action@v2
