@@ -110,22 +110,25 @@ jobs:
           file_name: .env
           fail_on_empty: true
 
-      - name: Setup Flutter Environment
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
+      - name: Print .env file
+        run: cat .env
 
-      - name: Get Packages
-        run: flutter pub get
+      # - name: Setup Flutter Environment
+      #   uses: subosito/flutter-action@v2
+      #   with:
+      #     channel: 'stable'
 
-      - name: Build Apk
-        run: flutter build apk --release
+      # - name: Get Packages
+      #   run: flutter pub get
 
-      - name: Upload Apk to artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: apk-doctor-${{ github.head_ref }}.apk
-          path: medecin_mobile/build/app/outputs/apk/release/app-release.apk
+      # - name: Build Apk
+      #   run: flutter build apk --release
+
+      # - name: Upload Apk to artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: apk-doctor-${{ github.head_ref }}.apk
+      #     path: medecin_mobile/build/app/outputs/apk/release/app-release.apk
 
   build-dev:
     runs-on: ubuntu-latest
