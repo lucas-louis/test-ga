@@ -1,4 +1,5 @@
-package com.example.prototype_1
+package com.edgar.pro
+
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.prototype_1">
+    package="com.edgar.pro">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="edgar"
+        android:label="edgar Pro"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
