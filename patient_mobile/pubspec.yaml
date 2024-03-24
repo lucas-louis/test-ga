@@ -27,6 +27,9 @@ dependencies:
   auto_size_text: ^3.0.0
   aligned_dialog: ^0.0.7
   logger: ^2.0.2+1
+  wolt_modal_sheet: ^0.3.0
+  flutter_file_downloader: ^1.2.0
+  file_picker: ^6.1.1
 description: A new Flutter project.
 dev_dependencies:
   flutter_lints: ^3.0.0
@@ -55,6 +58,6 @@ flutter:
     - assets/images/logo/
     - assets/images/utils/
     - .env  # The following line ensures that the Material Icons font is
-name: prototype_1
+name: edgar
 publish_to: none
 version: 1.0.0+1

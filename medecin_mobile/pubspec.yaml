@@ -1,4 +1,4 @@
-name: medecin_mobile
+name: edgar_pro
 description: A new Flutter project.
 publish_to: 'none'
 version: 0.1.0
@@ -11,15 +11,20 @@ dependencies:
   shared_preferences: ^2.0.8
   bootstrap_icons: ^1.11.1
   logger: ^2.0.2+1
-  http: ^1.1.0
+  http: ^1.2.0
   flutter_launcher_icons: ^0.13.1
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter  
+  wolt_modal_sheet: ^0.4.1
+  intl: ^0.18.1
+  flutter_datetime_picker: ^1.5.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 flutter_launcher_icons:
   android: launcher_icon
   ios: true
